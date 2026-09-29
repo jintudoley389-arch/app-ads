@@ -39,7 +39,6 @@
             line-height: 1.6;
         }
 
-        /* Top Ambient Glow */
         .ambient-glow {
             position: absolute;
             top: 0;
@@ -88,7 +87,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
             align-items: center;
         }
 
@@ -104,7 +103,7 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             padding: 5rem 1.5rem 3.5rem;
             text-align: center;
@@ -175,6 +174,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-main:hover {
@@ -201,11 +202,11 @@
             transform: translateY(-2px);
         }
 
-        /* Container & Titles */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 1.5rem;
+            padding: 3.5rem 1.5rem;
         }
 
         .section-tag {
@@ -223,11 +224,11 @@
             text-align: center;
             font-size: 2.2rem;
             font-weight: 800;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
             letter-spacing: -0.02em;
         }
 
-        /* Dynamic Grid Layouts */
+        /* Grid */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -241,8 +242,6 @@
             padding: 2.2rem;
             box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .feature-card:hover {
@@ -280,7 +279,7 @@
             line-height: 1.6;
         }
 
-        /* App Banner Showcase */
+        /* App Banner */
         .showcase-banner {
             background: #ffffff;
             border: 1px solid var(--card-border);
@@ -291,20 +290,6 @@
             grid-template-columns: 1.3fr 1fr;
             gap: 3rem;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 4rem;
-        }
-
-        .showcase-banner::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
-            z-index: 0;
         }
 
         .badge-live {
@@ -367,7 +352,56 @@
             font-weight: 600;
         }
 
-        /* Support & Contact Section */
+        /* Privacy Policy Section - Interactive Card */
+        .privacy-box {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .privacy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .privacy-content {
+            display: none;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--card-border);
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .privacy-content.show {
+            display: block;
+        }
+
+        .privacy-content h4 {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin: 1.5rem 0 0.5rem;
+            font-weight: 700;
+        }
+
+        .privacy-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Support & Contact */
         .contact-card {
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             border: 1px solid var(--card-border);
@@ -455,10 +489,11 @@
                 <i class="fa-brands fa-android" style="color: #10b981;"></i> Jintu Tech Labs
             </a>
             <div class="nav-links">
-                <a href="#about">About Studio</a>
+                <a href="#about">About</a>
                 <a href="#solutions">Capabilities</a>
                 <a href="#portfolio">Featured Apps</a>
-                <a href="#support">Customer Support</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#support">Support</a>
             </div>
         </div>
     </header>
@@ -487,7 +522,6 @@
         <h2 class="section-heading">Full-Stack Android Development Expertise</h2>
 
         <div class="grid-3">
-            <!-- Offline Systems -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-1">
                     <i class="fa-solid fa-bolt-lightning"></i>
@@ -496,7 +530,6 @@
                 <p>Calculators, cash counters, local databases (Room & SQLite), and offline utilities that function instantaneously without any internet connection, ensuring complete data privacy.</p>
             </div>
 
-            <!-- Online & Cloud Apps -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-2">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -505,7 +538,6 @@
                 <p>RESTful APIs, Firebase backend synchronization, real-time database feeds, user authentication, push messaging, and automated cloud backup solutions.</p>
             </div>
 
-            <!-- UI & UX Standards -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-3">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -514,7 +546,6 @@
                 <p>Vibrant, responsive UI components tailored for smooth framerates across low-end and flagship devices alike, featuring dynamic theme compatibility.</p>
             </div>
 
-            <!-- Architecture & Performance -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-4">
                     <i class="fa-solid fa-microchip"></i>
@@ -523,7 +554,6 @@
                 <p>Engineered using Kotlin Coroutines, Flow, Jetpack Navigation, clean Separation of Concerns, and minimal battery consumption practices.</p>
             </div>
 
-            <!-- Security & Privacy -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-1">
                     <i class="fa-solid fa-shield-halved"></i>
@@ -532,7 +562,6 @@
                 <p>Strict Play Console Data Safety adherence, on-device encrypted storage (EncryptedSharedPreferences), and zero unauthorized data harvesting.</p>
             </div>
 
-            <!-- Store Deployment & Monetization -->
             <div class="feature-card">
                 <div class="icon-box bg-gradient-2">
                     <i class="fa-brands fa-google-play"></i>
@@ -593,7 +622,58 @@
         </div>
     </div>
 
-    <!-- Customer Support & Inquiry -->
+    <!-- Interactive Privacy Policy Section -->
+    <div class="container" id="privacy" style="padding-top: 0;">
+        <span class="section-tag">Transparency & Trust</span>
+        <h2 class="section-heading">Privacy Policy</h2>
+
+        <div class="privacy-box">
+            <div class="privacy-header">
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem;">
+                        <i class="fa-solid fa-user-shield" style="color: var(--primary); margin-right: 8px;"></i> Official Privacy Commitment
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Learn how Jintu Tech Labs protects your data, upholds Play Store safety standards, and respects your privacy.
+                    </p>
+                </div>
+                <button id="togglePrivacyBtn" class="btn-main" onclick="togglePrivacy()">
+                    <i class="fa-solid fa-eye" id="toggleIcon"></i> <span id="toggleText">Read Full Privacy Policy</span>
+                </button>
+            </div>
+
+            <!-- Expandable Content -->
+            <div id="privacyContent" class="privacy-content">
+                <p><strong>Effective Date:</strong> January 2026 | <strong>Last Updated:</strong> 2026</p>
+                <p>At <strong>Jintu Tech Labs</strong> (founded by Jintu Doley), accessible from this website and through our published Android applications, user privacy is one of our core priorities. This Privacy Policy outlines the types of information we handle and how it is protected.</p>
+
+                <h4>1. Information Collection & Usage</h4>
+                <p>We do not collect, harvest, or store any sensitive personal data through this website. Any personal information you provide (such as your name, email address, or phone number) when contacting our support channels is used solely to respond to your technical questions, inquiries, and customer feedback.</p>
+
+                <h4>2. Offline App Architecture & Local Data Storage</h4>
+                <p>Our utility tools (including <em>CaleSmart: EMI & Cash Counter</em>) are engineered with an offline-first architecture. All calculation values, cash denomination records, and preferences remain completely on your local device. We do not transmit or store your financial figures on any external servers.</p>
+
+                <h4>3. Third-Party Services & Monetization</h4>
+                <p>Our website and mobile apps may use trusted third-party developer services:</p>
+                <ul>
+                    <li><strong>Google Play Services:</strong> For secure app distribution and analytics.</li>
+                    <li><strong>Google AdMob:</strong> For monetization, which may use anonymized advertising identifiers compliant with Google's Play Store Family & Data Safety policies.</li>
+                    <li><strong>GitHub Pages:</strong> For secure web hosting and standard traffic logs (IP address, browser type).</li>
+                </ul>
+
+                <h4>4. Data Security</h4>
+                <p>We implement industry-standard security measures to prevent unauthorized access, alteration, or disclosure of user data. We do not sell, rent, or trade your contact information to third parties.</p>
+
+                <h4>5. Children's Privacy</h4>
+                <p>Our services do not knowingly collect any personally identifiable information from children under the age of 13. If you believe your child has provided personal information to us, please reach out so we can promptly delete it.</p>
+
+                <h4>6. Contact Us</h4>
+                <p>If you have any questions or suggestions regarding this Privacy Policy, feel free to contact us directly at <a href="mailto:Support.jintutechlabs@gmail.com" style="color: var(--primary); font-weight: 600;">Support.jintutechlabs@gmail.com</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Support Section -->
     <div class="container" id="support" style="padding-top: 0;">
         <div class="contact-card">
             <span class="section-tag">Direct Communication</span>
@@ -627,6 +707,25 @@
             Architected & Built by <strong>Jintu Doley</strong> | Assam, India
         </p>
     </footer>
+
+    <!-- Interactive JavaScript for Privacy Policy Toggle -->
+    <script>
+        function togglePrivacy() {
+            var content = document.getElementById("privacyContent");
+            var btnText = document.getElementById("toggleText");
+            var icon = document.getElementById("toggleIcon");
+
+            if (content.classList.contains("show")) {
+                content.classList.remove("show");
+                btnText.innerText = "Read Full Privacy Policy";
+                icon.className = "fa-solid fa-eye";
+            } else {
+                content.classList.add("show");
+                btnText.innerText = "Hide Privacy Policy";
+                icon.className = "fa-solid fa-eye-slash";
+            }
+        }
+    </script>
 
 </body>
 </html>
