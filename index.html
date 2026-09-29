@@ -3,473 +3,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jintu Doley | Android Systems Engineer & Founder, Jintu Tech Labs</title>
-    <meta name="description" content="Engineering high-performance, offline-first Android utility and financial tools with zero latency and robust privacy.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Jintu Tech Labs | Android App Development & Solutions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #090d16;
-            --bg-surface: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(56, 189, 248, 0.2);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --primary: #4361ee;
+            --primary-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --accent-gradient: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            --warm-gradient: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
+            --bg-light: #f8faff;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
             --text-muted: #64748b;
-            --accent-cyan: #38bdf8;
-            --accent-emerald: #10b981;
-            --accent-indigo: #6366f1;
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(67, 97, 238, 0.12);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-main);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.07) 0%, transparent 40%);
-            min-height: 100vh;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Top Bar */
+        /* Header & Navigation */
         header {
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.25rem 0;
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 50;
-            background: rgba(9, 13, 22, 0.85);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-content {
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .brand-logo {
-            font-size: 1.15rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
-        .brand-badge {
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-cyan);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.3s ease;
         }
 
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-emerald);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-emerald);
-        }
-
-        /* Hero Dashboard Section */
+        /* Hero Section */
         .hero {
-            padding: 4.5rem 0 3rem;
+            padding: 4.5rem 1.5rem 3rem;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(76, 201, 240, 0.15), transparent 50%),
+                        radial-gradient(circle at top left, rgba(247, 37, 133, 0.08), transparent 50%);
         }
 
-        .terminal-tag {
-            font-family: var(--font-mono);
-            color: var(--accent-cyan);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+        .hero-badge {
             display: inline-block;
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(67, 97, 238, 0.2);
         }
 
-        h1 {
-            font-size: 2.75rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            margin-bottom: 1.25rem;
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f172a;
         }
 
-        .hero-lead {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 720px;
+        .hero h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.45);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
             margin-bottom: 2.5rem;
         }
 
-        /* Metrics Grid */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .metric-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            backdrop-filter: blur(8px);
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            font-family: var(--font-mono);
-        }
-
-        .metric-value {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        /* Tech Stack & Architecture */
-        .section-header {
-            margin-bottom: 2rem;
-        }
-
         .section-header h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            font-size: 1.9rem;
+            color: #0f172a;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
         }
 
-        .section-header p {
-            color: var(--text-secondary);
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(67, 97, 238, 0.3);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        .icon-blue { background: var(--primary-gradient); }
+        .icon-teal { background: var(--accent-gradient); }
+        .icon-pink { background: var(--warm-gradient); }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+        }
+
+        .card p {
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
+        /* Skills Tags */
+        .skills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
         }
 
-        .glass-box {
-            background: var(--bg-card);
+        .skill-tag {
+            background: #eef2ff;
+            color: var(--primary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(67, 97, 238, 0.15);
+        }
+
+        /* Featured App Section */
+        .app-showcase {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+            border: 2px solid rgba(67, 97, 238, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .app-info {
+            max-width: 600px;
+        }
+
+        .app-badge {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .app-info h3 {
+            font-size: 1.8rem;
+            margin: 0.8rem 0 0.5rem;
+            color: #0f172a;
+        }
+
+        /* Contact & Support Section */
+        .support-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 2rem;
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
         }
 
-        .glass-box::before {
+        .support-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+            right: 0;
+            height: 6px;
+            background: var(--primary-gradient);
         }
 
-        .stack-list {
-            list-style: none;
+        .contact-methods {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.25rem;
-        }
-
-        .stack-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .stack-bullet {
-            color: var(--accent-cyan);
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .stack-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-
-        .stack-desc {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        /* Engineering Philosophy */
-        .principles-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .principle-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .principle-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .principle-text {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Trust & Verification Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 0;
-            margin-top: 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .footer-info h4 {
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.05);
+        .contact-box {
+            background: var(--bg-light);
             border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            margin-top: 0.75rem;
-            transition: all 0.2s ease;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            min-width: 260px;
+            transition: transform 0.2s;
         }
 
-        .contact-btn:hover {
-            border-color: var(--accent-cyan);
-            background: rgba(56, 189, 248, 0.1);
+        .contact-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .contact-box span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .contact-box a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 2.5rem 1.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .hero { padding: 3rem 0 2rem; }
-            .footer-grid { flex-direction: column; }
+            .hero h1 { font-size: 2rem; }
+            .nav-container { flex-direction: column; gap: 1rem; text-align: center; }
+            .nav-links a { margin: 0 0.7rem; }
+            .app-showcase { padding: 1.8rem; text-align: center; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
-        <div class="container nav-content">
-            <div class="brand-logo">
-                Jintu Doley <span class="brand-badge">Jintu Tech Labs</span>
-            </div>
-            <div class="status-indicator">
-                <span class="status-dot"></span>
-                <span>Production Mode</span>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                ⚡ Jintu Tech Labs
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#apps">Apps</a>
+                <a href="#skills">Skills</a>
+                <a href="#support">Customer Support</a>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <span class="terminal-tag">$ sys_status: building standalone android engines</span>
-            <h1>Native Android Architecture with Zero Cloud Dependency.</h1>
-            <p class="hero-lead">
-                I am an independent Android systems developer crafting ultra-lightweight, standalone calculation engines and utility software under <strong>Jintu Tech Labs</strong>. Built for privacy, speed, and deterministic execution.
-            </p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-badge">Official Android Developer Studio</span>
+        <h1>Building Clean, High-Performance <br><span>Android Experiences</span></h1>
+        <p>
+            Welcome to <strong>Jintu Tech Labs</strong>. Founded by <strong>Jintu Doley</strong>, dedicated to architecting intuitive utility tools, smart financial calculators, and high-quality modern mobile applications.
+        </p>
+        <a href="#apps" class="cta-btn">Explore Published Apps</a>
+    </section>
 
-            <!-- Dashboard Stats -->
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-label">Execution Environment</div>
-                    <div class="metric-value">100% Offline</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Telemetry & Tracking</div>
-                    <div class="metric-value">Zero Data Stored</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Average App Payload</div>
-                    <div class="metric-value">&lt; 10 MB</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Runtime Reliability</div>
-                    <div class="metric-value">99.9% Crash-Free</div>
-                </div>
-            </div>
-        </section>
+    <!-- Main Container -->
+    <div class="container">
 
-        <!-- Technical Stack & Methodology -->
-        <section>
+        <!-- Featured App -->
+        <section id="apps" style="margin-bottom: 4rem;">
             <div class="section-header">
-                <h2>Engineering Stack & System Design</h2>
-                <p>Every utility is engineered using Google's modern native toolchains, focusing purely on local execution rather than external server APIs.</p>
+                <h2>Featured Application</h2>
             </div>
 
-            <div class="grid-2">
-                <!-- Stack Column -->
-                <div class="glass-box">
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Core Technologies</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">No bloated third-party frameworks or web wrappers.</p>
-                    <ul class="stack-list">
-                        <li class="stack-item">
-                            <span class="stack-bullet">&gt;</span>
-                            <div>
-                                <div class="stack-title">Kotlin & Jetpack Compose</div>
-                                <div class="stack-desc">Declarative native UI with strict memory boundaries and 60fps responsiveness.</div>
-                            </div>
-                        </li>
-                        <li class="stack-item">
-                            <span class="stack-bullet">&gt;</span>
-                            <div>
-                                <div class="stack-title">Clean Architecture & MVI</div>
-                                <div class="stack-desc">Unidirectional data flow ensuring deterministic states and bug-free recalculations.</div>
-                            </div>
-                        </li>
-                        <li class="stack-item">
-                            <span class="stack-bullet">&gt;</span>
-                            <div>
-                                <div class="stack-title">Local SQLite / Room Database</div>
-                                <div class="stack-desc">High-performance on-device storage. No personal records ever leave the hardware.</div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="app-showcase">
+                <div class="app-info">
+                    <span class="app-badge">Live on Google Play</span>
+                    <h3>CaleSmart: EMI & Cash Counter</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
+                        A fast, privacy-focused financial utility engineered to calculate EMIs, count cash denominations effortlessly, and manage daily financial calculations with precision and elegance.
+                    </p>
+                    <div class="skills-wrap">
+                        <span class="skill-tag">Android SDK</span>
+                        <span class="skill-tag">Modern UI</span>
+                        <span class="skill-tag">Instant Calculations</span>
+                        <span class="skill-tag">Offline Support</span>
+                    </div>
                 </div>
-
-                <!-- Engineering Practices -->
-                <div class="glass-box">
-                    <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Software Principles</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Strict architectural boundaries followed on every tool.</p>
-                    <ul class="stack-list">
-                        <li class="stack-item">
-                            <span class="stack-bullet">#</span>
-                            <div>
-                                <div class="stack-title">Mathematical Determinism</div>
-                                <div class="stack-desc">Financial formulas and conversions strictly validated against standard algebraic specs.</div>
-                            </div>
-                        </li>
-                        <li class="stack-item">
-                            <span class="stack-bullet">#</span>
-                            <div>
-                                <div class="stack-title">Battery & Memory Conscious</div>
-                                <div class="stack-desc">Zero non-essential background daemons or unneeded wake locks.</div>
-                            </div>
-                        </li>
-                        <li class="stack-item">
-                            <span class="stack-bullet">#</span>
-                            <div>
-                                <div class="stack-title">ProGuard / R8 Bytecode Optimization</div>
-                                <div class="stack-desc">Aggressive tree-shaking for minimal APK footprints and hardened logic.</div>
-                            </div>
-                        </li>
-                    </ul>
+                <div>
+                    <a href="https://play.google.com" target="_blank" class="cta-btn" style="background: var(--warm-gradient);">
+                        View on Play Store
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Trust & Philosophy -->
-        <section>
+        <!-- Developer Expertise & History -->
+        <section id="skills" style="margin-bottom: 4rem;">
             <div class="section-header">
-                <h2>Why Global Users Trust Jintu Tech Labs</h2>
-                <p>Designed for users who value data independence and instantaneous calculations over bloated cloud subscriptions.</p>
+                <h2>Android Engineering & Expertise</h2>
             </div>
 
-            <div class="principles-list">
-                <div class="principle-card">
-                    <div class="principle-title">🛡️ Absolute Privacy by Default</div>
-                    <div class="principle-text">Our applications run isolated inside the Android sandbox without asking for sensitive permissions like Contacts, Camera, or GPS.</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon icon-blue">📱</div>
+                    <h3>Native Architecture</h3>
+                    <p>Clean app architecture using Kotlin, Android SDK, and Jetpack components ensuring smooth frame rates and optimized memory efficiency.</p>
                 </div>
-                <div class="principle-card">
-                    <div class="principle-title">⚡ Instant Startup Time</div>
-                    <div class="principle-text">No network handshakes or remote loading states. Tools open and compute values in milliseconds, even on slow networks.</div>
+
+                <div class="card">
+                    <div class="card-icon icon-teal">🎨</div>
+                    <h3>Intuitive UI/UX</h3>
+                    <p>Crafting polished Material Design interfaces focused on user usability, responsive screen scaling, and frictionless user flows.</p>
                 </div>
-                <div class="principle-card">
-                    <div class="principle-title">📐 Native Android Compliance</div>
-                    <div class="principle-text">Fully adhering to Google Play policies, Android 14+ target SDK requirements, and modern Material Design guidelines.</div>
+
+                <div class="card">
+                    <div class="card-icon icon-pink">🚀</div>
+                    <h3>Store Deployment & Quality</h3>
+                    <p>End-to-end Google Play Console deployment, compliance, app monetization, and rigorous testing across diverse Android versions.</p>
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- Footer / Legal / Verification -->
+        <!-- Customer Support Section -->
+        <section id="support">
+            <div class="support-card">
+                <div class="section-header" style="margin-bottom: 1.2rem;">
+                    <h2>Customer Support & Enquiries</h2>
+                </div>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    Have questions about our apps, need technical assistance, or want to discuss a partnership? Our support team is here to assist you.
+                </p>
+
+                <div class="contact-methods">
+                    <div class="contact-box">
+                        <span>Official Support Email</span>
+                        <a href="mailto:Support.jintutechlabs@gmail.com">Support.jintutechlabs@gmail.com</a>
+                    </div>
+
+                    <div class="contact-box">
+                        <span>Direct Contact / WhatsApp</span>
+                        <a href="tel:+918822939897">+91 88229 39897</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-info">
-                <h4>Jintu Tech Labs</h4>
-                <p>Sole Proprietorship | Independent Software Development</p>
-                <p style="margin-top: 0.3rem;">Founder & Engineer: <strong>Jintu Doley</strong></p>
-                <p style="margin-top: 0.3rem; font-family: var(--font-mono);">Registered Entity: MSME Udyam (India)</p>
-            </div>
-            <div>
-                <h4>Developer Contact & Support</h4>
-                <p>For technical inquiries, policy audits, or bug reports:</p>
-                <a href="mailto:support@jintutechlabs.com" class="contact-btn">Email Engineering Support</a>
-            </div>
-        </div>
-        <div class="container" style="margin-top: 2.5rem; text-align: center; font-size: 0.75rem; color: var(--text-muted);">
-            &copy; 2026 Jintu Tech Labs. All Rights Reserved. Engineered with precision for the global Android ecosystem.
-        </div>
+        <p style="margin-bottom: 0.5rem; font-weight: 500;">
+            © 2026 Jintu Tech Labs. All Rights Reserved.
+        </p>
+        <p style="font-size: 0.85rem;">
+            Lead Developer: <strong>Jintu Doley</strong> | Assam, India
+        </p>
     </footer>
 
 </body>
