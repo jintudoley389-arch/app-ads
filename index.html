@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jintu Doley | Android Systems Engineer & Founder, Jintu Tech Labs</title>
+    <meta name="description" content="Engineering high-performance, offline-first Android utility and financial tools with zero latency and robust privacy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #090d16;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(56, 189, 248, 0.2);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #38bdf8;
+            --accent-emerald: #10b981;
+            --accent-indigo: #6366f1;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.07) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Top Bar */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 0;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(9, 13, 22, 0.85);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-emerald);
+        }
+
+        /* Hero Dashboard Section */
+        .hero {
+            padding: 4.5rem 0 3rem;
+        }
+
+        .terminal-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .metric-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Tech Stack & Architecture */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .glass-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+        }
+
+        .stack-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .stack-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .stack-bullet {
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .stack-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .stack-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Engineering Philosophy */
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .principle-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .principle-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .principle-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Trust & Verification Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-info h4 {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .hero { padding: 3rem 0 2rem; }
+            .footer-grid { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-content">
+            <div class="brand-logo">
+                Jintu Doley <span class="brand-badge">Jintu Tech Labs</span>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span>Production Mode</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="terminal-tag">$ sys_status: building standalone android engines</span>
+            <h1>Native Android Architecture with Zero Cloud Dependency.</h1>
+            <p class="hero-lead">
+                I am an independent Android systems developer crafting ultra-lightweight, standalone calculation engines and utility software under <strong>Jintu Tech Labs</strong>. Built for privacy, speed, and deterministic execution.
+            </p>
+
+            <!-- Dashboard Stats -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Execution Environment</div>
+                    <div class="metric-value">100% Offline</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Telemetry & Tracking</div>
+                    <div class="metric-value">Zero Data Stored</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Average App Payload</div>
+                    <div class="metric-value">&lt; 10 MB</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Runtime Reliability</div>
+                    <div class="metric-value">99.9% Crash-Free</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Stack & Methodology -->
+        <section>
+            <div class="section-header">
+                <h2>Engineering Stack & System Design</h2>
+                <p>Every utility is engineered using Google's modern native toolchains, focusing purely on local execution rather than external server APIs.</p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Stack Column -->
+                <div class="glass-box">
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Core Technologies</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">No bloated third-party frameworks or web wrappers.</p>
+                    <ul class="stack-list">
+                        <li class="stack-item">
+                            <span class="stack-bullet">&gt;</span>
+                            <div>
+                                <div class="stack-title">Kotlin & Jetpack Compose</div>
+                                <div class="stack-desc">Declarative native UI with strict memory boundaries and 60fps responsiveness.</div>
+                            </div>
+                        </li>
+                        <li class="stack-item">
+                            <span class="stack-bullet">&gt;</span>
+                            <div>
+                                <div class="stack-title">Clean Architecture & MVI</div>
+                                <div class="stack-desc">Unidirectional data flow ensuring deterministic states and bug-free recalculations.</div>
+                            </div>
+                        </li>
+                        <li class="stack-item">
+                            <span class="stack-bullet">&gt;</span>
+                            <div>
+                                <div class="stack-title">Local SQLite / Room Database</div>
+                                <div class="stack-desc">High-performance on-device storage. No personal records ever leave the hardware.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Engineering Practices -->
+                <div class="glass-box">
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Software Principles</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Strict architectural boundaries followed on every tool.</p>
+                    <ul class="stack-list">
+                        <li class="stack-item">
+                            <span class="stack-bullet">#</span>
+                            <div>
+                                <div class="stack-title">Mathematical Determinism</div>
+                                <div class="stack-desc">Financial formulas and conversions strictly validated against standard algebraic specs.</div>
+                            </div>
+                        </li>
+                        <li class="stack-item">
+                            <span class="stack-bullet">#</span>
+                            <div>
+                                <div class="stack-title">Battery & Memory Conscious</div>
+                                <div class="stack-desc">Zero non-essential background daemons or unneeded wake locks.</div>
+                            </div>
+                        </li>
+                        <li class="stack-item">
+                            <span class="stack-bullet">#</span>
+                            <div>
+                                <div class="stack-title">ProGuard / R8 Bytecode Optimization</div>
+                                <div class="stack-desc">Aggressive tree-shaking for minimal APK footprints and hardened logic.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Philosophy -->
+        <section>
+            <div class="section-header">
+                <h2>Why Global Users Trust Jintu Tech Labs</h2>
+                <p>Designed for users who value data independence and instantaneous calculations over bloated cloud subscriptions.</p>
+            </div>
+
+            <div class="principles-list">
+                <div class="principle-card">
+                    <div class="principle-title">🛡️ Absolute Privacy by Default</div>
+                    <div class="principle-text">Our applications run isolated inside the Android sandbox without asking for sensitive permissions like Contacts, Camera, or GPS.</div>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-title">⚡ Instant Startup Time</div>
+                    <div class="principle-text">No network handshakes or remote loading states. Tools open and compute values in milliseconds, even on slow networks.</div>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-title">📐 Native Android Compliance</div>
+                    <div class="principle-text">Fully adhering to Google Play policies, Android 14+ target SDK requirements, and modern Material Design guidelines.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Legal / Verification -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <h4>Jintu Tech Labs</h4>
+                <p>Sole Proprietorship | Independent Software Development</p>
+                <p style="margin-top: 0.3rem;">Founder & Engineer: <strong>Jintu Doley</strong></p>
+                <p style="margin-top: 0.3rem; font-family: var(--font-mono);">Registered Entity: MSME Udyam (India)</p>
+            </div>
+            <div>
+                <h4>Developer Contact & Support</h4>
+                <p>For technical inquiries, policy audits, or bug reports:</p>
+                <a href="mailto:support@jintutechlabs.com" class="contact-btn">Email Engineering Support</a>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 2.5rem; text-align: center; font-size: 0.75rem; color: var(--text-muted);">
+            &copy; 2026 Jintu Tech Labs. All Rights Reserved. Engineered with precision for the global Android ecosystem.
+        </div>
+    </footer>
+
+</body>
+</html>
